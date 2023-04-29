@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicle: {fileID: 11400000, guid: a085275cf2cbf4cb3bd0cf7d42d512f5, type: 2}
   speedUpEvent: {fileID: 11400000, guid: fb143045cc475e043a3ba215f60ea860, type: 2}
+  onGrassEvent: {fileID: 11400000, guid: 1e5480dee2a2e6947a3a7330b36f8014, type: 2}
 --- !u!212 &-4478747643870143624
 SpriteRenderer:
   m_ObjectHideFlags: 0

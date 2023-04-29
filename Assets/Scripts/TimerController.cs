@@ -8,10 +8,9 @@ public class TimerController : MonoBehaviour
 {
     [SerializeField] private float duration = 10.0f;
     [SerializeField] private float raiseDifficulty = 5.0f;
-    [SerializeField] private GameEvent onEndEvent;
+    [SerializeField] private GameEvent timerEndEvent;
     [SerializeField] private FloatGameEvent onAddTimeEvent;
     [SerializeField] private FloatGameEvent onStopTimeEvent;
-
 
     private int stopRemaining = 0;
 
@@ -64,7 +63,7 @@ public class TimerController : MonoBehaviour
             yield return new WaitForSeconds(1.0f); // Wait for one second
         }
 
-        onEndEvent.Raise();
+        timerEndEvent.Raise();
     }
 
     public void AddTime(float amount)

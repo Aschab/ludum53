@@ -194,6 +194,10 @@ PrefabInstance:
       propertyPath: m_UseAutoMass
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6725190569607321158, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
+      propertyPath: grassFriction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8950244752825013382, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

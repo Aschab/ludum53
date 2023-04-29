@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7522147004093899160}
   - component: {fileID: 4114438932874752366}
   - component: {fileID: -7209666628388855137}
+  - component: {fileID: 3457995573142725675}
   m_Layer: 0
   m_Name: Park1x1
   m_TagString: Park
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3457995573142725675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961221087665700739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9417a79b269994bbab0c4a3aecc418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGrassEvent: {fileID: 11400000, guid: 1e5480dee2a2e6947a3a7330b36f8014, type: 2}

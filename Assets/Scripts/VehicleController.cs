@@ -9,11 +9,13 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private Vehicle vehicle;
 
     [SerializeField] private FloatGameEvent speedUpEvent;
-
+    [SerializeField] private BoolGameEvent onGrassEvent;
 
     private Rigidbody2D rb;
     private InputAction accelerateAction, steeringAction;
     private float speedUpMultiplier = 1f;
+    private bool applyGrassSlow = false;
+    [SerializeField] private float grassFriction = 1f;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class VehicleController : MonoBehaviour
         controls.Driving.Steering.Enable();
 
         speedUpEvent.AddListener(SpeedUpEventHandler);
+        onGrassEvent.AddListener(OnGrassEventHandler);
     }
 
     private void FixedUpdate()
@@ -44,7 +47,9 @@ public class VehicleController : MonoBehaviour
 
         rb.drag = acceleration == 0
             ? Mathf.Lerp(rb.drag, 3.0f, Time.fixedDeltaTime * 3)
-            : 0;
+            : applyGrassSlow
+                ? grassFriction
+                : 0;
 
         rb.rotation += steering * vehicle.steerForce;
 
@@ -68,8 +73,8 @@ public class VehicleController : MonoBehaviour
         controls.Driving.Accelerate.Disable();
         controls.Driving.Steering.Disable();
         speedUpEvent.RemoveListener(SpeedUpEventHandler);
+        onGrassEvent.RemoveListener(OnGrassEventHandler);
     }
-
     private void SpeedUpEventHandler(float multiplier)
     {
         StartCoroutine(SpeedUp(3, multiplier));
@@ -79,5 +84,9 @@ public class VehicleController : MonoBehaviour
         speedUpMultiplier = multiplier;
         yield return new WaitForSeconds(duration);
         speedUpMultiplier = 1;
+    }
+    private void OnGrassEventHandler(bool onGrass)
+    {
+        applyGrassSlow = onGrass;
     }
 }
