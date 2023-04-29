@@ -7,7 +7,7 @@ using ScriptableObjectArchitecture;
 public class TimerController : MonoBehaviour
 {
     [SerializeField] private float duration = 10.0f;
-    [SerializeField] private float raiseDifficulty = 5.0f;
+    [SerializeField] private float raiseDifficultyDuration = 5.0f;
     [SerializeField] private GameEvent onEndEvent;
     [SerializeField] private FloatGameEvent onAddTimeEvent;
 
@@ -15,10 +15,14 @@ public class TimerController : MonoBehaviour
     private float remaining;
     private float raminingToDifficulty;
 
+    private GameController gameController;
+
     private void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
         remaining = duration;
-        raminingToDifficulty = raiseDifficulty;
+        raminingToDifficulty = raiseDifficultyDuration;
         text = GetComponentInChildren<TMP_Text>();
         StartCoroutine(Countdown());
     }
@@ -48,7 +52,8 @@ public class TimerController : MonoBehaviour
             raminingToDifficulty -= 1.0f;
             if (raminingToDifficulty <= 0)
             {
-                raminingToDifficulty = raiseDifficulty;
+                gameController.IncreaseDifficulty();
+                raminingToDifficulty = raiseDifficultyDuration;
             }
         }
 

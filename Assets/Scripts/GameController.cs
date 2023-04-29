@@ -19,18 +19,27 @@ public class GameController : MonoBehaviour
 
     public float generationCenter;
 
+    private int difficulty = 1;
+    private int difficultyModifier = 1;
+
     private VehicleController _vehicleController;
 
     void Start()
     {
         _vehicleController = vehicle.GetComponent<VehicleController>();
-        SpawnDeliverable();
+        Init();
+    }
+
+    public void Init()
+    {
+        difficulty = 1;
+        SpawnDeliverable();        
     }
 
     public void Grab(DeliverableType type)
     {
         active.Add(type);
-        Vector2 areaPos = GetRandomPositionFree(new Vector2(minXArea, minYArea), new Vector2(maxXArea, maxYArea));
+        Vector2 areaPos = GetRandomPositionFree(new Vector2(minXArea*difficulty, minYArea*difficulty), new Vector2(maxXArea*difficulty, maxYArea*difficulty));
         GameObject newArea = Instantiate(deliverableArea, areaPos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
@@ -52,7 +61,7 @@ public class GameController : MonoBehaviour
 
     private void SpawnDeliverable()
     {
-        Vector2 deliverablePos = GetRandomPositionFree(new Vector2(minXArea, minYArea), new Vector2(maxXArea, maxYArea));
+        Vector2 deliverablePos = GetRandomPositionFree(new Vector2(minXArea*difficulty, minYArea*difficulty), new Vector2(maxXArea*difficulty, maxYArea*difficulty));
         GameObject newDeliverable = Instantiate(deliverable, deliverablePos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
@@ -67,7 +76,7 @@ public class GameController : MonoBehaviour
 
     private bool CanSpawn(Vector2 pos)
     {
-        return Physics2D.OverlapCircle(pos, generationCenter) == null;
+        return Physics2D.OverlapCircle(pos, generationCenter) != null;
     }
 
     private Vector2 GetRandomPositionFree(Vector2 min, Vector2 max)
@@ -81,5 +90,10 @@ public class GameController : MonoBehaviour
                 return areaPos;
             }
         }
+    }
+
+    public void IncreaseDifficulty()
+    {
+        difficulty += difficultyModifier;
     }
 }

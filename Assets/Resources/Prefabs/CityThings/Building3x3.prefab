@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2959351056820789990}
   - component: {fileID: 1155409090144491326}
   - component: {fileID: 1155409090144491327}
+  - component: {fileID: 3759622249841013834}
   m_Layer: 0
   m_Name: Building3x3
   m_TagString: Building
@@ -94,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810505281747430411}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -116,7 +117,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 810505281747430411}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d80bd95ffc584488ebbe26897d156215, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -133,3 +134,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3759622249841013834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810505281747430411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef03e6e1ee5e410ea83372308d84bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

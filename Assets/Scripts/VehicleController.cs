@@ -14,6 +14,7 @@ public class VehicleController : MonoBehaviour
     private Rigidbody2D rb;
     private InputAction accelerateAction, steeringAction;
     private float speedUpMultiplier = 1f;
+    private float dampValue = 0f;
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class VehicleController : MonoBehaviour
         float acceleration = accelerateAction.ReadValue<float>();
         float steering = steeringAction.ReadValue<float>();
 
-        Vector2 fowardForce = transform.up * acceleration * vehicle.accelerationForce * speedUpMultiplier;
+        Vector2 fowardForce = transform.up * acceleration * (vehicle.accelerationForce) * speedUpMultiplier;
         rb.AddForce(fowardForce, ForceMode2D.Force);
 
         rb.drag = acceleration == 0
@@ -61,7 +62,14 @@ public class VehicleController : MonoBehaviour
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, vehicle.maxSpeed);
+        if (dampValue > 1f) 
+        {
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, dampValue);
+        }
+        else 
+        {
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, vehicle.maxSpeed);
+        }
     }
     public void OnDisable()
     {
@@ -79,5 +87,10 @@ public class VehicleController : MonoBehaviour
         speedUpMultiplier = multiplier;
         yield return new WaitForSeconds(duration);
         speedUpMultiplier = 1;
+    }
+
+    public void Damp(float d)
+    {
+        dampValue = d;
     }
 }
