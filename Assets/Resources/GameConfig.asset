@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab9ce46a9463a7449d2975a75cd170d, type: 3}
-  m_Name: SpeedUp
+  m_Script: {fileID: 11500000, guid: b9f7a4ccfe01dac4080fd4024236da0f, type: 3}
+  m_Name: GameConfig
   m_EditorClassIdentifier: 
-  onPickupEventEntries:
-  - gameEvent: {fileID: 11400000, guid: fb143045cc475e043a3ba215f60ea860, type: 2}
-    value: 5
+  itemSpawnRate: 0.2

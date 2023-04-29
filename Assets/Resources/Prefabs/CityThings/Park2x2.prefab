@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9095778990135778247}
   - component: {fileID: 3406927476927056689}
   - component: {fileID: -5465472080533835255}
-  - component: {fileID: 3162554889805503932}
+  - component: {fileID: 6081021921736203510}
   m_Layer: 0
   m_Name: Park2x2
   m_TagString: Park
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3162554889805503932
+--- !u!114 &6081021921736203510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,3 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampValue: 20
+  m_Script: {fileID: 11500000, guid: 1e9417a79b269994bbab0c4a3aecc418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGrassEvent: {fileID: 11400000, guid: 1e5480dee2a2e6947a3a7330b36f8014, type: 2}

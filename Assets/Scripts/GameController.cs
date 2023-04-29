@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
 
     private bool CanSpawn(Vector2 pos)
     {
-        return Physics2D.OverlapCircle(pos, generationCenter) != null;
+        return Physics2D.OverlapCircle(pos, generationCenter) == null;
     }
 
     private Vector2 GetRandomPositionFree(Vector2 min, Vector2 max)

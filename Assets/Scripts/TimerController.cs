@@ -9,7 +9,11 @@ public class TimerController : MonoBehaviour
     [SerializeField] private float duration = 10.0f;
     [SerializeField] private float raiseDifficultyDuration = 5.0f;
     [SerializeField] private GameEvent onEndEvent;
+    [SerializeField] private GameEvent timerEndEvent;
     [SerializeField] private FloatGameEvent onAddTimeEvent;
+    [SerializeField] private FloatGameEvent onStopTimeEvent;
+
+    private int stopRemaining = 0;
 
     private TMP_Text text;
     private float remaining;
@@ -30,11 +34,13 @@ public class TimerController : MonoBehaviour
     private void OnEnable()
     {
         onAddTimeEvent.AddListener(AddTime);
+        onStopTimeEvent.AddListener(StopTime);
     }
 
     private void OnDisable()
     {
         onAddTimeEvent.RemoveListener(AddTime);
+        onStopTimeEvent.RemoveListener(StopTime);
     }
 
     private void UpdateText()
@@ -46,18 +52,24 @@ public class TimerController : MonoBehaviour
     {
         while (remaining > 0)
         {
-            UpdateText();
-            yield return new WaitForSeconds(1.0f); // Wait for one second
-            remaining -= 1.0f; // Decrease the remaining time
+            if (stopRemaining > 0)
+            {
+                stopRemaining -= 1;
+            } else
+            {
+                UpdateText();
+                remaining -= 1.0f; // Decrease the remaining time
+            }
             raminingToDifficulty -= 1.0f;
             if (raminingToDifficulty <= 0)
             {
                 gameController.IncreaseDifficulty();
                 raminingToDifficulty = raiseDifficultyDuration;
             }
+            yield return new WaitForSeconds(1.0f); // Wait for one second
         }
 
-        onEndEvent.Raise();
+        timerEndEvent.Raise();
     }
 
     public void AddTime(float amount)
@@ -66,8 +78,8 @@ public class TimerController : MonoBehaviour
         UpdateText();
     }
 
-    public void StopTime()
+    public void StopTime(float amount)
     {
-        
+        stopRemaining += Mathf.RoundToInt(amount);
     }
 }
