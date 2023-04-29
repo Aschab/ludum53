@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Street : MonoBehaviour
 {
+    [System.Serializable]
+    public struct ItemEntry {
+        public GameObject prefab;
+        public float probability;
+    }
 
     public Vector2 mapPos;
 
@@ -24,6 +30,8 @@ public class Street : MonoBehaviour
     public float odds1x1;
     public float odds2x2;
     public float odds3x3;
+
+    [SerializeField] ItemEntry[] items;
 
     public void Populate(Side side)
     {
@@ -66,6 +74,48 @@ public class Street : MonoBehaviour
         size.x = 1;
         size.y = 1;
         FormBySize(prefabs1x1, start1x1, size, odds1x1);
+
+        AddItems();
+    }
+
+    private void AddItems()
+    {
+        Transform spawnPoints = transform.Find("spawnpoints");
+        List<Transform> children = new List<Transform>();
+        for (int i = 0; i < spawnPoints.childCount; i++) children.Add(spawnPoints.GetChild(i));
+
+        foreach (var spawnpoint in children)
+        {
+            if (IsColliderAtPoint(spawnpoint.position)) continue;
+            ItemEntry? item = PickItem();
+            if (item != null)
+            {
+                ItemEntry entry = (ItemEntry)item;
+                GameObject itemObject = Instantiate(entry.prefab, spawnpoint.transform.position, Quaternion.identity);
+                itemObject.transform.SetParent(transform);
+            }
+        }
+
+
+    }
+
+    private ItemEntry? PickItem()
+    {
+        foreach (var item in items)
+        {
+            float randomValue = Random.Range(0f, 1f);
+            if (item.probability >= randomValue)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    private bool IsColliderAtPoint(Vector2 at)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(at, 0.1f);
+        return colliders.Any(collider => !collider.isTrigger);
     }
 
     private void FormBySize(List<GameObject> prefabs, Vector2 startPosition, Vector2 size, float probability)

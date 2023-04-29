@@ -789,10 +789,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreetFull
       objectReference: {fileID: 0}
-    - target: {fileID: 3827942973006597994, guid: 104b2d4e7e6a0453a86dbe5a989b1188, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 104b2d4e7e6a0453a86dbe5a989b1188, type: 3}
 --- !u!1 &2067153000
