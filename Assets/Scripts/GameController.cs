@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     public float maxXArea;
     public float maxYArea;
 
+    public float generationCenter;
+
     private VehicleController _vehicleController;
 
     void Start()
@@ -28,7 +30,7 @@ public class GameController : MonoBehaviour
     public void Grab(DeliverableType type)
     {
         active.Add(type);
-        Vector2 areaPos = new Vector2(UnityEngine.Random.Range(minXArea, maxXArea), UnityEngine.Random.Range(minYArea, maxYArea));
+        Vector2 areaPos = GetRandomPositionFree(new Vector2(minXArea, minYArea), new Vector2(maxXArea, maxYArea));
         GameObject newArea = Instantiate(deliverableArea, areaPos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
@@ -50,7 +52,7 @@ public class GameController : MonoBehaviour
 
     private void SpawnDeliverable()
     {
-        Vector2 deliverablePos = new Vector2(UnityEngine.Random.Range(minXArea, maxXArea), UnityEngine.Random.Range(minYArea, maxYArea));
+        Vector2 deliverablePos = GetRandomPositionFree(new Vector2(minXArea, minYArea), new Vector2(maxXArea, maxYArea));
         GameObject newDeliverable = Instantiate(deliverable, deliverablePos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
@@ -61,5 +63,23 @@ public class GameController : MonoBehaviour
         newIndicator.transform.localPosition = Vector2.zero;
         newIndicator.transform.name = "PointTowards";
         newIndicator.GetComponent<PointTowards>().target = newDeliverable.transform;
+    }
+
+    private bool CanSpawn(Vector2 pos)
+    {
+        return Physics2D.OverlapCircle(pos, generationCenter) == null;
+    }
+
+    private Vector2 GetRandomPositionFree(Vector2 min, Vector2 max)
+    {
+        // accidental infinite loops food :D 
+        while (true)
+        {
+            Vector2 areaPos = new Vector2(UnityEngine.Random.Range(min.x, max.x), UnityEngine.Random.Range(min.y, max.y));
+            if (CanSpawn(areaPos))
+            {
+                return areaPos;
+            }
+        }
     }
 }
