@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPickupEventEntries:
   - gameEvent: {fileID: 11400000, guid: fb143045cc475e043a3ba215f60ea860, type: 2}
-    value: 2
+    value: 4
