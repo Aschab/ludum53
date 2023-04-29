@@ -38,23 +38,59 @@ public class VehicleController : MonoBehaviour
         onGrassEvent.AddListener(OnGrassEventHandler);
     }
 
+    private float accelerationInput = 0;
+    private float steeringInput = 0;
+    private void Update()
+    {
+        accelerationInput = accelerateAction.ReadValue<float>();
+        steeringInput = steeringAction.ReadValue<float>();
+    }
+
+    // private void FixedUpdate()
+    // {
+    //     if (accelerationInput == 0)
+    //     {
+    //         // Gradually stop the vehicle when acceleration is not pressed
+    //         rb.velocity *= (1 - 10f * Time.fixedDeltaTime);
+    //     }
+    //     else
+    //     {
+    //         // Accelerate the vehicle
+    //         rb.AddForce(transform.up * vehicle.accelerationForce * accelerationInput, ForceMode2D.Force);
+    //     }
+
+    //     // Limit the vehicle's speed
+    //     rb.velocity = Vector2.ClampMagnitude(rb.velocity, vehicle.maxSpeed);
+
+    //     // Prevent player from turning when the car is at a standstill or very slow speed
+    //     if (rb.velocity.magnitude > 0.5f)
+    //     {
+    //         // Steering
+    //         float steering = vehicle.steeringForce * steeringInput;
+    //         rb.MoveRotation(rb.rotation + steering * Time.fixedDeltaTime);
+    //     }
+    // }
+
     private void FixedUpdate()
     {
-        float acceleration = accelerateAction.ReadValue<float>();
-        float steering = steeringAction.ReadValue<float>();
 
-        Vector2 fowardForce = transform.up * acceleration * (vehicle.accelerationForce) * speedUpMultiplier;
+        Vector2 fowardForce = transform.up * accelerationInput * (vehicle.accelerationForce) * speedUpMultiplier;
+        if (
+            accelerationInput < 0 && Vector2.Dot(rb.velocity, transform.up) > 0 ||
+            accelerationInput > 0 && Vector2.Dot(rb.velocity, transform.up) < 0
+        ) fowardForce *= vehicle.breakForce; // apply break force only when breaking
         rb.AddForce(fowardForce, ForceMode2D.Force);
 
-        rb.drag = acceleration == 0
+        rb.drag = accelerationInput == 0
             ? Mathf.Lerp(rb.drag, 3.0f, Time.fixedDeltaTime * 3)
             : applyGrassSlow
                 ? grassFriction
                 : 0;
 
-        rb.rotation += steering * vehicle.steerForce;
+        float minTurningSpeed = Mathf.Clamp01(rb.velocity.magnitude / 2);
+        rb.rotation += steeringInput * vehicle.steeringForce * minTurningSpeed;
 
-        Vector2 forward = new Vector2(0.0f, 10f);
+        Vector2 forward = new Vector2(0.0f, 1f);
 
         float steeringRightAngle = rb.angularVelocity > 0
             ? -90
@@ -64,7 +100,7 @@ public class VehicleController : MonoBehaviour
 
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(rightAngleFromForward.normalized));
 
-        Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
+        Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * vehicle.traction);
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
         if (dampValue > 1f) 

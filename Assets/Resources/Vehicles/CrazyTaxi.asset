@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: CrazyTaxi
   m_EditorClassIdentifier: 
   accelerationForce: 45
-  steerForce: 2
+  steeringForce: 3
+  traction: 125
+  breakForce: 10
   maxSpeed: 105
   sprite: {fileID: 21300000, guid: baafecceb2894c94785a47ff645d5841, type: 3}
   scaleFactor: 1

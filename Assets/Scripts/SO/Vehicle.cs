@@ -6,7 +6,9 @@ using UnityEngine;
 public class Vehicle : ScriptableObject
 {
     public float accelerationForce = 45f;
-    public float steerForce = 0.75f;
+    public float steeringForce = 0.75f;
+    public float traction = 75f;
+    public float breakForce = 1.5f;
     public float maxSpeed = 60f;
     public Sprite sprite;
     public float scaleFactor = 1;
