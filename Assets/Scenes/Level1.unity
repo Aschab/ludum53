@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963327736842745923, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8963327736842745923, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,7 +344,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1339023275
 MonoBehaviour:
@@ -705,7 +705,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1607029537
 MonoBehaviour:
@@ -770,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3827942973006597993, guid: 104b2d4e7e6a0453a86dbe5a989b1188, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3827942973006597993, guid: 104b2d4e7e6a0453a86dbe5a989b1188, type: 3}
       propertyPath: m_LocalPosition.x
@@ -918,7 +918,7 @@ RectTransform:
   - {fileID: 1517553131}
   - {fileID: 1416689486}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1003,6 +1003,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2067153004}
     m_Modifications:
+    - target: {fileID: 6697555126318938696, guid: 09f2e978552611f4da09a2ebdebd5657, type: 3}
+      propertyPath: onEndEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 39b07ce27be0f8d44abc226ed345d926, type: 2}
+    - target: {fileID: 6697555126318938696, guid: 09f2e978552611f4da09a2ebdebd5657, type: 3}
+      propertyPath: onAddTimeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: e6cc1d165f52ec84eb6087e87b230aa5, type: 2}
     - target: {fileID: 6697555126318938702, guid: 09f2e978552611f4da09a2ebdebd5657, type: 3}
       propertyPath: m_Name
       value: Timer

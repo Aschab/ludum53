@@ -9,7 +9,7 @@ public class Vehicle : ScriptableObject
     public float steerForce = 0.75f;
     public float maxSpeed = 60f;
     public Sprite sprite;
-    public float scaleFactor;
+    public float scaleFactor = 1;
 
     public Vector2 GetScaleVector()
     {

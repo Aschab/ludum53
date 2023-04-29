@@ -1,13 +1,19 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
+using ScriptableObjectArchitecture;
+using System.Collections;
 
 public class VehicleController : MonoBehaviour
 {
     PlayerControls controls;
     [SerializeField] private Vehicle vehicle;
 
+    [SerializeField] private FloatGameEvent speedUpEvent;
+
+
     private Rigidbody2D rb;
     private InputAction accelerateAction, steeringAction;
+    private float speedUpMultiplier = 1f;
 
     private void Awake()
     {
@@ -24,6 +30,8 @@ public class VehicleController : MonoBehaviour
 
         steeringAction = controls.Driving.Steering;
         controls.Driving.Steering.Enable();
+
+        speedUpEvent.AddListener(SpeedUpEventHandler);
     }
 
     private void FixedUpdate()
@@ -31,7 +39,7 @@ public class VehicleController : MonoBehaviour
         float acceleration = accelerateAction.ReadValue<float>();
         float steering = steeringAction.ReadValue<float>();
 
-        Vector2 fowardForce = transform.up * acceleration * vehicle.accelerationForce;
+        Vector2 fowardForce = transform.up * acceleration * vehicle.accelerationForce * speedUpMultiplier;
         rb.AddForce(fowardForce, ForceMode2D.Force);
 
         rb.drag = acceleration == 0
@@ -59,5 +67,17 @@ public class VehicleController : MonoBehaviour
     {
         controls.Driving.Accelerate.Disable();
         controls.Driving.Steering.Disable();
+        speedUpEvent.RemoveListener(SpeedUpEventHandler);
+    }
+
+    private void SpeedUpEventHandler(float multiplier)
+    {
+        StartCoroutine(SpeedUp(3, multiplier));
+    }
+    public IEnumerator SpeedUp(float duration, float multiplier)
+    {
+        speedUpMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        speedUpMultiplier = 1;
     }
 }

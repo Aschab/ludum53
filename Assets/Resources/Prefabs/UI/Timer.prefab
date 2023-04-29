@@ -186,4 +186,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 100
-  OnEndEvent: {fileID: 11400000, guid: 39b07ce27be0f8d44abc226ed345d926, type: 2}
+  onEndEvent: {fileID: 11400000, guid: 39b07ce27be0f8d44abc226ed345d926, type: 2}
+  onAddTimeEvent: {fileID: 11400000, guid: e6cc1d165f52ec84eb6087e87b230aa5, type: 2}
