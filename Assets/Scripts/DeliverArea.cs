@@ -5,6 +5,8 @@ using System;
 
 public class DeliverArea : MonoBehaviour
 {
+    public GameController gameController;
+
     public DeliverableType type;
     public float stoppedAt = 3f;
 
@@ -15,6 +17,7 @@ public class DeliverArea : MonoBehaviour
     
     void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         transform.localScale = new Vector3(UnityEngine.Random.Range(minScaleX, maxScaleX), UnityEngine.Random.Range(minScaleY, maxScaleY), 1f);
     }
 
@@ -23,7 +26,11 @@ public class DeliverArea : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Rigidbody2D body = collision.gameObject.GetComponent<Rigidbody2D>();
-            Debug.Log(isStopped(body));
+            if (isStopped(body))
+            {
+                gameController.Deliver(type);
+                Destroy(gameObject);
+            }
         }
     }
 

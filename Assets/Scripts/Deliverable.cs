@@ -12,6 +12,8 @@ public class Deliverable : MonoBehaviour
 
     void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
         Sequence deliverableMovement = DOTween.Sequence();
 
         deliverableMovement = DOTween.Sequence();
