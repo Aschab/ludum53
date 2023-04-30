@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     private GameObject vehicle;
     public GameObject indicator;
     public TimerController timer;
+    private GameData data;
 
     public float minDistance;
     public float maxDistance;
