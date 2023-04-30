@@ -28,8 +28,11 @@ public class VehicleController : MonoBehaviour
 
     [HideInInspector]
     public bool isBraking = false;
+
+    private GameData data;
     private void Awake()
     {
+        data = Resources.Load<GameData>("GameData");
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         carAudio = GetComponent<AudioSource>();
@@ -54,7 +57,7 @@ public class VehicleController : MonoBehaviour
         accelerationInput = accelerateAction.ReadValue<float>();
         steeringInput = steeringAction.ReadValue<float>();
 
-        HandleAudio();
+        if (!data.muted) HandleAudio();
     }
 
     private void HandleAudio()

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     public GameObject deliverable;
     public GameObject deliverableArea;
-    public GameObject vehicle;
+    private GameObject vehicle;
     public GameObject indicator;
     public TimerController timer;
 
@@ -24,8 +24,16 @@ public class GameController : MonoBehaviour
 
     private VehicleController _vehicleController;
 
+    void Awake()
+    {
+        data = Resources.Load<GameData>("GameData");
+        vehicle = Instantiate(data.selectedVehicle.gameObject, Vector3.zero, Quaternion.identity);
+        Camera.main.GetComponent<CameraFollow>().target = vehicle;
+    }
+
     void Start()
     {
+        vehicle.transform.SetParent(null);
         _vehicleController = vehicle.GetComponent<VehicleController>();
         Init();
     }
