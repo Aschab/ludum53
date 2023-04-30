@@ -27,45 +27,111 @@ public class MapController : MonoBehaviour
 
     public void Expand(Vector2 from, Side to)
     {
-        Vector2 v1 = new Vector2(from.x, from.y);
-        Vector2 v2 = new Vector2(from.x, from.y);
-        Vector2 v3 = new Vector2(from.x, from.y);
+        Vector2 v11 = new Vector2(from.x, from.y);
+        Vector2 v12 = new Vector2(from.x, from.y);
+        Vector2 v13 = new Vector2(from.x, from.y);
+        Vector2 v14 = new Vector2(from.x, from.y);
+        Vector2 v15 = new Vector2(from.x, from.y);
+        Vector2 v21 = new Vector2(from.x, from.y);
+        Vector2 v22 = new Vector2(from.x, from.y);
+        Vector2 v23 = new Vector2(from.x, from.y);
+        Vector2 v24 = new Vector2(from.x, from.y);
+        Vector2 v25 = new Vector2(from.x, from.y);
 
         switch(to)
         {
             case Side.Left:
-                v1.x -= 1;
-                v2.x -= 1;
-                v3.x -= 1;
-                v1.y += 1;
-                v3.y -= 1;
+                v11.x -= 1;
+                v12.x -= 1;
+                v13.x -= 1;
+                v14.x -= 1;
+                v15.x -= 1;
+                v21.x -= 2;
+                v22.x -= 2;
+                v23.x -= 2;
+                v24.x -= 2;
+                v25.x -= 2;
+                v11.y += 1;
+                v12.y += 2;
+                v14.y -= 1;
+                v15.y -= 2;
+                v21.y += 1;
+                v22.y += 2;
+                v24.y -= 1;
+                v25.y -= 2;
                 break;
             case Side.Right:
-                v1.x += 1;
-                v2.x += 1;
-                v3.x += 1;
-                v1.y += 1;
-                v3.y -= 1;
+                v11.x += 1;
+                v12.x += 1;
+                v13.x += 1;
+                v14.x += 1;
+                v15.x += 1;
+                v21.x += 2;
+                v22.x += 2;
+                v23.x += 2;
+                v24.x += 2;
+                v25.x += 2;
+                v11.y += 1;
+                v12.y += 2;
+                v14.y -= 1;
+                v15.y -= 2;
+                v21.y += 1;
+                v22.y += 2;
+                v24.y -= 1;
+                v25.y -= 2;
                 break;
             case Side.Top:
-                v1.y += 1;
-                v2.y += 1;
-                v3.y += 1;
-                v1.x += 1;
-                v3.x -= 1;
+                v11.y += 1;
+                v12.y += 1;
+                v13.y += 1;
+                v14.y += 1;
+                v15.y += 1;
+                v21.y += 2;
+                v22.y += 2;
+                v23.y += 2;
+                v24.y += 2;
+                v25.y += 2;
+                v11.x += 1;
+                v12.x += 2;
+                v14.x -= 1;
+                v15.x -= 2;
+                v21.x += 1;
+                v22.x += 2;
+                v24.x -= 1;
+                v25.x -= 2;
                 break;                
             case Side.Bottom:
-                v1.y -= 1;
-                v2.y -= 1;
-                v3.y -= 1;
-                v1.x += 1;
-                v3.x -= 1;
+                v11.y -= 1;
+                v12.y -= 1;
+                v13.y -= 1;
+                v14.y -= 1;
+                v15.y -= 1;
+                v21.y -= 2;
+                v22.y -= 2;
+                v23.y -= 2;
+                v24.y -= 2;
+                v25.y -= 2;
+                v11.x += 1;
+                v12.x += 2;
+                v14.x -= 1;
+                v15.x -= 2;
+                v21.x += 1;
+                v22.x += 2;
+                v24.x -= 1;
+                v25.x -= 2;
                 break;            
         }
 
-        CreateIfNotExist(v1);
-        CreateIfNotExist(v2);
-        CreateIfNotExist(v3);
+        CreateIfNotExist(v11);
+        CreateIfNotExist(v12);
+        CreateIfNotExist(v13);
+        CreateIfNotExist(v14);
+        CreateIfNotExist(v15);
+        CreateIfNotExist(v21);
+        CreateIfNotExist(v22);
+        CreateIfNotExist(v23);
+        CreateIfNotExist(v24);
+        CreateIfNotExist(v25);
     }
 
     private void CreateIfNotExist(Vector2 pos)

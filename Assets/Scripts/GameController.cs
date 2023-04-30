@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
 
     private void SpawnDeliverable()
     {
+        Debug.Log("here");
         Vector2 deliverablePos = GetRandomPositionFree(new Vector2(minXArea*difficulty, minYArea*difficulty), new Vector2(maxXArea*difficulty, maxYArea*difficulty));
         GameObject newDeliverable = Instantiate(deliverable, deliverablePos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
@@ -72,6 +73,8 @@ public class GameController : MonoBehaviour
         newIndicator.transform.localPosition = Vector2.zero;
         newIndicator.transform.name = "PointTowards";
         newIndicator.GetComponent<PointTowards>().target = newDeliverable.transform;
+                Debug.Log("here2");
+
     }
 
     private bool CanSpawn(Vector2 pos)

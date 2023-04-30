@@ -662,7 +662,7 @@ MonoBehaviour:
   target: {fileID: 1409494797}
   offset: {x: 0, y: 0, z: 0}
   smoothSpeed: 5
-  lookAheadDistance: 0
+  applySmooth: 0
 --- !u!1 &1607029535
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   delivered: 
   deliverable: {fileID: 4870579672578130061, guid: f7a1d1ad46eb547ae8c08e8b502c0dec, type: 3}
   deliverableArea: {fileID: 5966490785093036469, guid: dcad32e165ca5430586c3f8d8cf36e05, type: 3}
-  vehicle: {fileID: 0}
+  vehicle: {fileID: 1409494797}
   indicator: {fileID: 3033210734499417003, guid: 21c8760090dc544b6b86ec1390314710, type: 3}
   minXArea: -20
   minYArea: -20

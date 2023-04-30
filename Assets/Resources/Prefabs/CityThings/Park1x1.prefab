@@ -124,4 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c82c1cc82c954794ba94817e7e43626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampValue: 30
+  dampValue: 5
