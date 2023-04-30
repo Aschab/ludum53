@@ -1,24 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject target;
-
-    public bool isCustomOffset;
-    public Vector3 offset;
-
-    public float smoothSpeed = 0.5f;
-
+    [SerializeField] private GameObject target;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float smoothSpeed = 15f;
+    [SerializeField] private bool applySmooth = false;
     private void Start()
     {
-        // You can also specify your own offset from inspector
-        // by making isCustomOffset bool to true
-        if (!isCustomOffset)
-        {
-            offset = transform.position - target.transform.position;
-        }
+        offset = transform.position - target.transform.position;
     }
 
     private void LateUpdate()
@@ -29,10 +22,7 @@ public class CameraFollow : MonoBehaviour
     public void SmoothFollow()
     {
         Vector3 targetPos = target.transform.position + offset;
-        Vector3 smoothFollow = Vector3.Lerp(transform.position,
-        targetPos, smoothSpeed);
-
+        Vector3 smoothFollow = applySmooth ? Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime) : targetPos;
         transform.position = smoothFollow;
-        transform.LookAt(target.transform);
     }
 }

@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 595949035
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.085069306, g: 0.8962264, b: 0.054957304, a: 1}
@@ -125,7 +125,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampValue: 20
-  m_Script: {fileID: 11500000, guid: 1e9417a79b269994bbab0c4a3aecc418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onGrassEvent: {fileID: 11400000, guid: 1e5480dee2a2e6947a3a7330b36f8014, type: 2}

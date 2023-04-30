@@ -48,6 +48,12 @@ TagManager:
   - name: Floor
     uniqueID: 1585256567
     locked: 0
+  - name: Floor Decoration
+    uniqueID: 595949035
+    locked: 0
   - name: Player
     uniqueID: 3712521379
+    locked: 0
+  - name: Buildings
+    uniqueID: 2029812283
     locked: 0

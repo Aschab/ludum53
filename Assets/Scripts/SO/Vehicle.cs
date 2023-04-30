@@ -10,11 +10,6 @@ public class Vehicle : ScriptableObject
     public float traction = 75f;
     public float breakForce = 1.5f;
     public float maxSpeed = 60f;
-    public Sprite sprite;
-    public float scaleFactor = 1;
-
-    public Vector2 GetScaleVector()
-    {
-        return new Vector2(scaleFactor, scaleFactor);
-    }
+    public float backwardMaxSpeedMultiplier = 0.5f;
+    public float backwardAccelerationForceMultiplier = 0.5f;
 }

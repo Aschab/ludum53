@@ -6,7 +6,7 @@ using System.Collections;
 public class VehicleController : MonoBehaviour
 {
     PlayerControls controls;
-    [SerializeField] private Vehicle vehicle;
+    [SerializeField] public Vehicle vehicle;
 
     [SerializeField] private FloatGameEvent speedUpEvent;
     [SerializeField] private BoolGameEvent onGrassEvent;
@@ -17,13 +17,14 @@ public class VehicleController : MonoBehaviour
     private float dampValue = 0f;
     private bool applyGrassSlow = false;
     [SerializeField] private float grassFriction = 1f;
+    [SerializeField] private float driftThreshHold = 4f;
 
+    [HideInInspector]
+    public bool isBraking = false;
     private void Awake()
     {
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
-        GetComponent<SpriteRenderer>().sprite = vehicle.sprite;
-        transform.localScale = vehicle.GetScaleVector();
     }
 
     private void OnEnable()
@@ -45,40 +46,20 @@ public class VehicleController : MonoBehaviour
         accelerationInput = accelerateAction.ReadValue<float>();
         steeringInput = steeringAction.ReadValue<float>();
     }
-
-    // private void FixedUpdate()
-    // {
-    //     if (accelerationInput == 0)
-    //     {
-    //         // Gradually stop the vehicle when acceleration is not pressed
-    //         rb.velocity *= (1 - 10f * Time.fixedDeltaTime);
-    //     }
-    //     else
-    //     {
-    //         // Accelerate the vehicle
-    //         rb.AddForce(transform.up * vehicle.accelerationForce * accelerationInput, ForceMode2D.Force);
-    //     }
-
-    //     // Limit the vehicle's speed
-    //     rb.velocity = Vector2.ClampMagnitude(rb.velocity, vehicle.maxSpeed);
-
-    //     // Prevent player from turning when the car is at a standstill or very slow speed
-    //     if (rb.velocity.magnitude > 0.5f)
-    //     {
-    //         // Steering
-    //         float steering = vehicle.steeringForce * steeringInput;
-    //         rb.MoveRotation(rb.rotation + steering * Time.fixedDeltaTime);
-    //     }
-    // }
-
     private void FixedUpdate()
     {
+        bool goingBackwards = accelerationInput < 0;
+        isBraking = goingBackwards && Vector2.Dot(rb.velocity, transform.up) > 0;
+        Vector2 fowardForce = transform.up * accelerationInput * speedUpMultiplier * vehicle.accelerationForce;
+        fowardForce *= goingBackwards
+            ? vehicle.backwardMaxSpeedMultiplier
+            : 1;
 
-        Vector2 fowardForce = transform.up * accelerationInput * (vehicle.accelerationForce) * speedUpMultiplier;
         if (
-            accelerationInput < 0 && Vector2.Dot(rb.velocity, transform.up) > 0 ||
-            accelerationInput > 0 && Vector2.Dot(rb.velocity, transform.up) < 0
+            isBraking ||
+            !goingBackwards && Vector2.Dot(rb.velocity, transform.up) < 0
         ) fowardForce *= vehicle.breakForce; // apply break force only when breaking
+
         rb.AddForce(fowardForce, ForceMode2D.Force);
 
         rb.drag = accelerationInput == 0
@@ -109,7 +90,10 @@ public class VehicleController : MonoBehaviour
         }
         else 
         {
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, vehicle.maxSpeed);
+            rb.velocity = Vector2.ClampMagnitude(
+                rb.velocity,
+                vehicle.maxSpeed * (goingBackwards ? vehicle.backwardMaxSpeedMultiplier : 1)
+            );
         }
     }
     public void OnDisable()
@@ -139,4 +123,15 @@ public class VehicleController : MonoBehaviour
     {
         applyGrassSlow = onGrass;
     }
+
+    float GetLateralVelocity()
+    {
+        return Vector2.Dot(transform.right, rb.velocity);
+    }
+
+    public bool IsTireScreeching()
+    {
+        return isBraking || Mathf.Abs(GetLateralVelocity()) > driftThreshHold;
+    }
+
 }
