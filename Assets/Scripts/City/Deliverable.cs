@@ -7,11 +7,13 @@ using System;
 public class Deliverable : MonoBehaviour
 {
     public GameController gameController;
+    private bool grabbed;
     
     private Sequence deliverableMovement;
 
     void Start()
     {
+        grabbed = false;
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         Sequence deliverableMovement = DOTween.Sequence();
@@ -25,11 +27,21 @@ public class Deliverable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (!grabbed) 
         {
-            deliverableMovement.Kill();
-            gameController.Grab(DeliverableType.Pizza);
-            Destroy(gameObject);
+            grabbed = true;
+            if (collision.gameObject.tag == "Player")
+            {
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.Play();
+                deliverableMovement.Kill();
+                transform.DOScale(0f, .4f).SetEase(Ease.InOutQuint).OnComplete(() => {                    
+                    gameController.Grab(DeliverableType.Pizza);
+                    transform.DOScale(0f, .5f).SetEase(Ease.InOutQuint).OnComplete(() => {
+                        Destroy(gameObject);
+                    });
+                });
+            }
         }
     }
 }

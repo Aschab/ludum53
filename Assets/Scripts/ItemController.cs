@@ -29,7 +29,13 @@ public class ItemController : MonoBehaviour
         {
             item.Pickup();
             movement.Kill();
-            Destroy(gameObject);
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
+            transform.DOScale(0f, .4f).SetEase(Ease.InOutQuint).OnComplete(() => {
+                transform.DOScale(0f, .5f).SetEase(Ease.InOutQuint).OnComplete(() => {
+                    Destroy(gameObject);
+                });
+            });
         }
     }
 }

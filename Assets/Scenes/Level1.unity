@@ -1080,6 +1080,7 @@ MonoBehaviour:
   deliverableArea: {fileID: 5966490785093036469, guid: dcad32e165ca5430586c3f8d8cf36e05, type: 3}
   vehicle: {fileID: 1409494797}
   indicator: {fileID: 3033210734499417003, guid: 21c8760090dc544b6b86ec1390314710, type: 3}
+  timer: {fileID: 2100974634}
   minDistance: 20
   maxDistance: 50
   generationCenter: 2
@@ -1187,6 +1188,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2100974634 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6697555126318938696, guid: 09f2e978552611f4da09a2ebdebd5657, type: 3}
+  m_PrefabInstance: {fileID: 6697555125749012908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c7f468a21044d40940c3b435c86479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6697555125749012908
 PrefabInstance:
   m_ObjectHideFlags: 0
