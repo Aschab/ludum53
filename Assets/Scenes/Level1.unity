@@ -177,10 +177,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1298692757, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298692757, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4585257440604655621, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
       propertyPath: m_Name
       value: Crazy Taxi
       objectReference: {fileID: 0}
+    - target: {fileID: 4789084319713338509, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3dd0218f86fc647a2a0871996751ae19, type: 3}
     - target: {fileID: 8963327736842745923, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -297,7 +309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1163106829
 AudioSource:
   m_ObjectHideFlags: 0

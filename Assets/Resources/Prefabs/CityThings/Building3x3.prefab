@@ -146,3 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef03e6e1ee5e410ea83372308d84bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: {x: 28, y: 28}
+  radius: 16
+  colliders: []

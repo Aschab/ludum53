@@ -10,7 +10,7 @@ public class StreetCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Street street = transform.parent.gameObject.GetComponent<Street>();
+            Street street = collision.gameObject.GetComponent<Street>();
             street.Populate(side);
         }
     }
