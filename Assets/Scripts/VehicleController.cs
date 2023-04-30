@@ -19,12 +19,20 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float grassFriction = 1f;
     [SerializeField] private float driftThreshHold = 4f;
 
+    [SerializeField] private Vector2 pitchValues;
+    [SerializeField] private Vector2 speedPitchValues;
+    [SerializeField] private float carAudioVolume;
+    [SerializeField] private float minSpeedAudio;
+    [SerializeField] private AudioSource carAudio;
+    [SerializeField] private float smoothTransition;
+
     [HideInInspector]
     public bool isBraking = false;
     private void Awake()
     {
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
+        carAudio = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -45,7 +53,26 @@ public class VehicleController : MonoBehaviour
     {
         accelerationInput = accelerateAction.ReadValue<float>();
         steeringInput = steeringAction.ReadValue<float>();
+
+        HandleAudio();
     }
+
+    private void HandleAudio()
+    {
+        float targetVolume = carAudioVolume;
+        if (rb.velocity.magnitude < minSpeedAudio) targetVolume = 0f;
+        float targetPitch = pitchValues.x;
+        float speedP = (rb.velocity.magnitude - speedPitchValues.x) / speedPitchValues.y;
+        speedP = Mathf.Max(Mathf.Min(speedP, 1f), 0f);
+        targetPitch += (pitchValues.y - pitchValues.x) * speedP;
+
+        targetVolume = Mathf.Lerp(carAudio.volume, targetVolume, smoothTransition * Time.deltaTime);
+        carAudio.volume = targetVolume;
+        targetPitch = Mathf.Lerp(carAudio.pitch, targetPitch, smoothTransition * Time.deltaTime);
+        carAudio.pitch = targetPitch;
+
+    }
+
     private void FixedUpdate()
     {
         bool goingBackwards = accelerationInput < 0;
