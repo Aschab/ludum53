@@ -8,6 +8,7 @@ TagManager:
   - Park
   - Deliverable
   - DeliverableArea
+  - SpawnPoints
   layers:
   - Default
   - TransparentFX

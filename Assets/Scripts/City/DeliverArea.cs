@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class DeliverArea : MonoBehaviour
 {
@@ -10,26 +11,34 @@ public class DeliverArea : MonoBehaviour
     public DeliverableType type;
     public float stoppedAt = 3f;
 
-    public float minScaleX;
-    public float minScaleY;
-    public float maxScaleX;
-    public float maxScaleY;
+    private bool delivered;
     
     void Start()
     {
+        delivered = false;
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
-        transform.localScale = new Vector3(UnityEngine.Random.Range(minScaleX, maxScaleX), UnityEngine.Random.Range(minScaleY, maxScaleY), 1f);
     }
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (!delivered)
         {
-            Rigidbody2D body = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (isStopped(body))
+            if (collision.gameObject.tag == "Player")
             {
-                gameController.Deliver(type);
-                Destroy(gameObject);
+                Rigidbody2D body = collision.gameObject.GetComponent<Rigidbody2D>();
+                if (isStopped(body))
+                {
+                    delivered = true;
+
+                    AudioSource audio = GetComponent<AudioSource>();
+                    audio.Play();
+                    ParticleSystem particles = GetComponentInChildren<ParticleSystem>();
+                    particles.Stop();
+                    transform.DOScale(0f, 2f).SetEase(Ease.InOutQuint).OnComplete(() => {
+                        gameController.Deliver(type);
+                        Destroy(gameObject);
+                    });
+                }
             }
         }
     }
