@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using ScriptableObjectArchitecture;
+using DG.Tweening;
 
 public class TimerController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class TimerController : MonoBehaviour
     [SerializeField] private GameEvent timerEndEvent;
     [SerializeField] private FloatGameEvent onAddTimeEvent;
     [SerializeField] private FloatGameEvent onStopTimeEvent;
+
+    public float totalTime;
 
     private int stopRemaining = 0;
 
@@ -24,6 +27,8 @@ public class TimerController : MonoBehaviour
     private void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        totalTime = 0f;
 
         remaining = duration;
         raminingToDifficulty = raiseDifficultyDuration;
@@ -45,7 +50,18 @@ public class TimerController : MonoBehaviour
 
     private void UpdateText()
     {
-        text.text = remaining.ToString("F0");
+        Transform textTransform = null;
+        foreach (Transform child in transform)
+        {
+            if (child != transform){
+                textTransform = child;
+            }
+        }
+
+        textTransform.DOScale(2f, .2f).SetEase(Ease.InOutQuint).OnComplete(() => {
+            textTransform.DOScale(1f, .2f).SetEase(Ease.OutBounce);
+            text.text = remaining.ToString("F0");
+        });
     }
 
     private IEnumerator Countdown()
@@ -58,6 +74,7 @@ public class TimerController : MonoBehaviour
             } else
             {
                 UpdateText();
+                totalTime += 1.0f;
                 remaining -= 1.0f; // Decrease the remaining time
             }
             raminingToDifficulty -= 1.0f;

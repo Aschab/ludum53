@@ -17,8 +17,9 @@ public class Deliverable : MonoBehaviour
         Sequence deliverableMovement = DOTween.Sequence();
 
         deliverableMovement = DOTween.Sequence();
-        deliverableMovement.Append(transform.DORotate(new Vector3(0, 0, 90), .3f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.OutBounce))
-        .Append(transform.DOMoveY(transform.position.y, 0).SetDelay(2f).SetDelay(2f));
+        deliverableMovement.Append(transform.DOScale(1.3f, .3f).SetRelative(true).SetEase(Ease.OutBounce))
+        .Append(transform.DORotate(Vector2.zero, 0).SetDelay(2f).SetDelay(2f))
+        .Append(transform.DOScale((1f/1.3f), .3f).SetRelative(true).SetEase(Ease.InOutQuint));
         deliverableMovement.SetLoops(-1, LoopType.Restart);
     }
 
