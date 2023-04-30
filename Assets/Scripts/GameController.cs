@@ -17,10 +17,13 @@ public class GameController : MonoBehaviour
     public float maxXArea;
     public float maxYArea;
 
+    public float minDistance;
+    public float maxDistance;
+
     public float generationCenter;
 
-    private int difficulty = 1;
-    private int difficultyModifier = 1;
+    public float difficulty = 1f;
+    private float difficultyModifier = 0.5f;
 
     private VehicleController _vehicleController;
 
@@ -47,7 +50,7 @@ public class GameController : MonoBehaviour
     public void Grab(DeliverableType type)
     {
         active.Add(type);
-        Vector2 areaPos = GetRandomPositionFree(new Vector2(minXArea*difficulty, minYArea*difficulty), new Vector2(maxXArea*difficulty, maxYArea*difficulty));
+        Vector2 areaPos = GetRandomPositionForSpwan();
         GameObject newArea = Instantiate(deliverableArea, areaPos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
@@ -70,7 +73,7 @@ public class GameController : MonoBehaviour
     private void SpawnDeliverable()
     {
         Debug.Log("here");
-        Vector2 deliverablePos = GetRandomPositionFree(new Vector2(minXArea*difficulty, minYArea*difficulty), new Vector2(maxXArea*difficulty, maxYArea*difficulty));
+        Vector2 deliverablePos = GetRandomPositionForSpwan();
         GameObject newDeliverable = Instantiate(deliverable, deliverablePos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
@@ -90,17 +93,16 @@ public class GameController : MonoBehaviour
         return Physics2D.OverlapCircle(pos, generationCenter) == null;
     }
 
-    private Vector2 GetRandomPositionFree(Vector2 min, Vector2 max)
+    private Vector2 GetRandomPositionForSpwan()
     {
-        // accidental infinite loops food :D 
-        while (true)
-        {
-            Vector2 areaPos = new Vector2(UnityEngine.Random.Range(min.x, max.x), UnityEngine.Random.Range(min.y, max.y));
-            if (CanSpawn(areaPos))
-            {
-                return areaPos;
-            }
-        }
+        Vector2 center = vehicle.transform.position;
+        float distance = UnityEngine.Random.Range(minDistance, maxDistance);
+        float radian = UnityEngine.Random.Range(-180f, 180f);
+        float x = Mathf.Cos(radian);
+        float y = Mathf.Sin(radian);
+        Vector3 spawnPoint = new Vector3 (x,y)*distance;
+        Debug.DrawLine(vehicle.transform.position, spawnPoint);
+        return spawnPoint;
     }
 
     public void IncreaseDifficulty()
