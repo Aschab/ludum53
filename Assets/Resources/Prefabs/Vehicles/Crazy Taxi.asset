@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f7a4ccfe01dac4080fd4024236da0f, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: 3945033838a8d614b8ad70a0cf746105, type: 3}
+  m_Name: Crazy Taxi
   m_EditorClassIdentifier: 
-  itemSpawnRate: 0.2
+  accelerationForce: 10
+  steeringForce: 4.5
+  traction: 40
+  breakForce: 5
+  maxSpeed: 45
+  backwardMaxSpeedMultiplier: 0.5
+  backwardAccelerationForceMultiplier: 0.5

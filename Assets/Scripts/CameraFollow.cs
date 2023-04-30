@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
+    [SerializeField] public GameObject target;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float smoothSpeed = 15f;
     [SerializeField] private bool applySmooth = false;
