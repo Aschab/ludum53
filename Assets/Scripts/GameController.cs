@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
             GameObject newEnemy = Instantiate(enemy, enemyPos, Quaternion.identity) as GameObject;
             Chase chase = newEnemy.GetComponent<Chase>();
             chase.target = vehicle.transform;
-            chase.speed = Mathf.Min(1f, Mathf.Floor(difficulty/2f)) + 2f;
+            chase.speed = Mathf.Min(20f, Mathf.Max(1f, Mathf.Floor(difficulty/2f)) + 1f);
             GhostingAround ga = newEnemy.GetComponentInChildren<GhostingAround>();
             ga.penalty = difficulty;
             enemies--;
