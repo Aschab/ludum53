@@ -116,6 +116,11 @@ public class VehicleController : MonoBehaviour
         rb.AddForce(rb.GetRelativeVector(relativeForce));
         if (dampValue > 1f) 
         {
+            float finalDamp = rb.velocity.magnitude;
+            if (rb.velocity.magnitude > dampValue)
+            {
+                finalDamp = dampValue + ((rb.velocity.magnitude - dampValue) * vehicle.dampResistance);
+            }
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, dampValue);
         }
         else 
