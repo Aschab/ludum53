@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed165a4f1ab57a64883372ef8b29ceee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicle: {fileID: 11400000, guid: 2b78c619428266748919495680a55b3d, type: 2}
+  vehicle: {fileID: 11400000, guid: c652128e9ab9b3a4e83dd9d34482bc7e, type: 2}
   speedUpEvent: {fileID: 11400000, guid: fb143045cc475e043a3ba215f60ea860, type: 2}
   onGrassEvent: {fileID: 11400000, guid: 1e5480dee2a2e6947a3a7330b36f8014, type: 2}
   grassFriction: 1
