@@ -12,4 +12,8 @@ public class Vehicle : ScriptableObject
     public float maxSpeed = 60f;
     public float backwardMaxSpeedMultiplier = 0.5f;
     public float backwardAccelerationForceMultiplier = 0.5f;
+    public float dampResistance = 0f;
+
+    [TextArea]
+    public string description;
 }

@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3945033838a8d614b8ad70a0cf746105, type: 3}
-  m_Name: Crazy Taxi
+  m_Name: Truck
   m_EditorClassIdentifier: 
-  accelerationForce: 10
-  steeringForce: 4.5
+  accelerationForce: 5
+  steeringForce: 2
   traction: 40
-  breakForce: 5
-  maxSpeed: 45
+  breakForce: 10
+  maxSpeed: 16
   backwardMaxSpeedMultiplier: 0.5
   backwardAccelerationForceMultiplier: 0.5
+  dampResistance: 0.9
+  description: 'Truck:
+
+    Fat but unstopabble'

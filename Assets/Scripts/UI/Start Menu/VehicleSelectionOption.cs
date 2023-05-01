@@ -1,16 +1,20 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class VehicleSelectionOption : MonoBehaviour
 {
     [SerializeField] public VehicleController vehicle;
     [SerializeField] private GameData gameData;
-    [HideInInspector] public UnityEvent selectEvent;
+    [SerializeField] private TMP_Text description;
+
+    [HideInInspector] public UnityEvent selectEvent;    
 
     private GameObject border;
     private Vector3 originalScale;
     private Vector3 targetScale;
+
     private void Start()
     {
         selectEvent = new UnityEvent();
@@ -32,6 +36,7 @@ public class VehicleSelectionOption : MonoBehaviour
     {
         selectEvent.Invoke();
         gameData.selectedVehicle = vehicle;
+        //description.text = vehicle.description;
         ApplySelect();
     }
 

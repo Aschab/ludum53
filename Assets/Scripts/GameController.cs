@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public GameObject deliverableArea;
     private GameObject vehicle;
     public GameObject indicator;
+    public GameObject enemy;
     public TimerController timer;
     private GameData data;
 
@@ -21,14 +22,15 @@ public class GameController : MonoBehaviour
     public float generationCenter;
 
     public float difficulty = 1f;
-    private float difficultyModifier = 0.5f;
+    private float difficultyModifier = 1f;
 
     private VehicleController _vehicleController;
 
     private GameEvent onPickupEvent;
     private GameEvent onDropoffEvent;
 
-    void Awake()
+
+    private void Awake()
     {
         onPickupEvent = Resources.Load<GameEvent>("Events/OnPickup");
         onDropoffEvent = Resources.Load<GameEvent>("Events/OnDropoff");
@@ -42,6 +44,12 @@ public class GameController : MonoBehaviour
     {
         vehicle.transform.SetParent(null);
         _vehicleController = vehicle.GetComponent<VehicleController>();
+        GameObject audio = GameObject.Find("BackgroundMusic");
+        if (!data.muted && audio) 
+        {
+            audio.GetComponent<AudioSource>().Play();
+        }
+
         Init();
     }
 
@@ -75,6 +83,26 @@ public class GameController : MonoBehaviour
         timer.AddTime(10f);
         delivered.Add(type);
         SpawnDeliverable();
+        SpawnEnemies();
+    }
+
+    private void SpawnEnemies()
+    {
+        int enemies = (int) Mathf.Floor(difficulty/2f);
+        Debug.Log(enemies);
+        enemies = UnityEngine.Random.Range(0, enemies);
+        Debug.Log(enemies);
+        while (enemies > 0) 
+        {
+            Vector2 enemyPos = GetRandomPositionForSpawn();
+            GameObject newEnemy = Instantiate(enemy, enemyPos, Quaternion.identity) as GameObject;
+            Chase chase = newEnemy.GetComponent<Chase>();
+            chase.target = vehicle.transform;
+            chase.speed = Mathf.Min(1f, Mathf.Floor(difficulty/2f)) + 2f;
+            GhostingAround ga = newEnemy.GetComponentInChildren<GhostingAround>();
+            ga.penalty = difficulty;
+            enemies--;
+        }
     }
 
     private void SpawnDeliverable()
@@ -163,5 +191,10 @@ public class GameController : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(at, 0.1f);
         return colliders.Any(collider => !collider.isTrigger);
+    }
+
+    public void Ghosted(float penalty)
+    {
+        timer.RemoveTime(penalty);
     }
 }

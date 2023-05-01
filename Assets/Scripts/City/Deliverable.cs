@@ -10,11 +10,13 @@ public class Deliverable : MonoBehaviour
     private bool grabbed;
     
     private Sequence deliverableMovement;
+    private GameData data;
 
     void Start()
     {
         grabbed = false;
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        data = Resources.Load<GameData>("GameData");
 
         Sequence deliverableMovement = DOTween.Sequence();
 
@@ -23,6 +25,7 @@ public class Deliverable : MonoBehaviour
         .Append(transform.DORotate(Vector2.zero, 0).SetDelay(2f).SetDelay(2f))
         .Append(transform.DOScale((1f/1.3f), .3f).SetRelative(true).SetEase(Ease.InOutQuint));
         deliverableMovement.SetLoops(-1, LoopType.Restart);
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -32,8 +35,11 @@ public class Deliverable : MonoBehaviour
             grabbed = true;
             if (collision.gameObject.tag == "Player")
             {
-                AudioSource audio = GetComponent<AudioSource>();
-                audio.Play();
+                if (!data.muted) 
+                {
+                    AudioSource audio = GetComponent<AudioSource>();
+                    audio.Play();
+                }
                 deliverableMovement.Kill();
                 transform.DOScale(0f, .4f).SetEase(Ease.InOutQuint).OnComplete(() => {                    
                     gameController.Grab(DeliverableType.Pizza);

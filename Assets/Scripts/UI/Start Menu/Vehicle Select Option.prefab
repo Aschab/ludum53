@@ -66,10 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Crazy Taxi
+  m_text: Car
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 411294ccd82924694b263604c8b171f2, type: 2}
+  m_sharedMaterial: {fileID: -9222017935019860292, guid: 411294ccd82924694b263604c8b171f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -315,8 +315,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.88727164, b: 0.10849059, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Color: {r: 0.78699994, g: 0.70485675, b: 0.195176, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -406,9 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bad899a9dd47bc3faaa7dd31c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicle: {fileID: 6725190569607321158, guid: bc5dccff8d5c4de41828e59f4feff4d5, type: 3}
+  vehicle: {fileID: 6725190569607321158, guid: b5e99b17d0723e1409a870fc6cb29f3c, type: 3}
   gameData: {fileID: 11400000, guid: 62b6f88317171824ea75c537a0798d43, type: 2}
-  isSelected: 0
   selectEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -584,7 +583,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -620,8 +619,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2346504565827376043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -11.8, z: 0}
-  m_LocalScale: {x: 20.49, y: 20.49, z: 20.49}
+  m_LocalPosition: {x: -1.9, y: -13.1, z: 0}
+  m_LocalScale: {x: 25.000002, y: 25.000002, z: 25.000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2346504564942690202}
@@ -668,7 +667,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: baafecceb2894c94785a47ff645d5841, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dd0218f86fc647a2a0871996751ae19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

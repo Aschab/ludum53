@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   selectedVehicle: {fileID: 6725190569607321158, guid: 2306efd018f2b304c9794026303e07ae, type: 3}
-  muted: 1
+  muted: 0
+  dialog: 1

@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3945033838a8d614b8ad70a0cf746105, type: 3}
   m_Name: Motorcycle
   m_EditorClassIdentifier: 
-  accelerationForce: 18
+  accelerationForce: 11
   steeringForce: 5
-  traction: 45
+  traction: 30
   breakForce: 3.5
-  maxSpeed: 30
+  maxSpeed: 35
+  backwardMaxSpeedMultiplier: 0.5
+  backwardAccelerationForceMultiplier: 0.5
+  dampResistance: 0
+  description: 'Quicky:
+
+    Fast but clumsy'

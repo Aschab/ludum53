@@ -95,6 +95,12 @@ public class TimerController : MonoBehaviour
         UpdateText();
     }
 
+    public void RemoveTime(float amount)
+    {
+        remaining -= amount;
+        UpdateText();
+    }
+
     public void StopTime(float amount)
     {
         stopRemaining += Mathf.RoundToInt(amount);

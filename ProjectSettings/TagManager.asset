@@ -9,6 +9,7 @@ TagManager:
   - Deliverable
   - DeliverableArea
   - SpawnPoints
+  - Music
   layers:
   - Default
   - TransparentFX
@@ -57,6 +58,9 @@ TagManager:
     locked: 0
   - name: Buildings
     uniqueID: 2029812283
+    locked: 0
+  - name: Ghost
+    uniqueID: 1089540725
     locked: 0
   - name: UI
     uniqueID: 3656301643

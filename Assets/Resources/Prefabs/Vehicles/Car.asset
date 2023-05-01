@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3945033838a8d614b8ad70a0cf746105, type: 3}
   m_Name: Car
   m_EditorClassIdentifier: 
-  accelerationForce: 10
-  steeringForce: 4.5
-  traction: 40
-  breakForce: 5
-  maxSpeed: 45
+  accelerationForce: 7
+  steeringForce: 3
+  traction: 50
+  breakForce: 10
+  maxSpeed: 20
   backwardMaxSpeedMultiplier: 0.5
   backwardAccelerationForceMultiplier: 0.5
+  dampResistance: 0.2
+  description: 'Normy:
+
+    Reliable and trustable'
