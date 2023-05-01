@@ -207,5 +207,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 8, y: 8}
-  radius: 5
+  radius: 9
   colliders: []
