@@ -30,13 +30,13 @@ public class VehicleSelectionOption : MonoBehaviour
     {
         transform.DOScale(1.25f, 0.2f).SetEase(Ease.InOutQuad);
         border.transform.DOScale(targetScale * 1.05f, 0.2f).SetEase(Ease.InOutQuad);
+        description.text = vehicle.GetDescription();
     }
     
     public void Select()
     {
         selectEvent.Invoke();
         gameData.selectedVehicle = vehicle;
-        //description.text = vehicle.description;
         ApplySelect();
     }
 

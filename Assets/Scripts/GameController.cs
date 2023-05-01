@@ -89,9 +89,7 @@ public class GameController : MonoBehaviour
     private void SpawnEnemies()
     {
         int enemies = (int) Mathf.Floor(difficulty/2f);
-        Debug.Log(enemies);
         enemies = UnityEngine.Random.Range(0, enemies);
-        Debug.Log(enemies);
         while (enemies > 0) 
         {
             Vector2 enemyPos = GetRandomPositionForSpawn();
