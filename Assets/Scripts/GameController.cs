@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using ScriptableObjectArchitecture;
 
 public class GameController : MonoBehaviour
 {
@@ -25,8 +25,14 @@ public class GameController : MonoBehaviour
 
     private VehicleController _vehicleController;
 
+    private GameEvent onPickupEvent;
+    private GameEvent onDropoffEvent;
+
     void Awake()
     {
+        onPickupEvent = Resources.Load<GameEvent>("Events/OnPickup");
+        onDropoffEvent = Resources.Load<GameEvent>("Events/OnDropoff");
+
         data = Resources.Load<GameData>("GameData");
         vehicle = Instantiate(data.selectedVehicle.gameObject, Vector3.zero, Quaternion.identity);
         Camera.main.GetComponent<CameraFollow>().target = vehicle;
@@ -47,6 +53,7 @@ public class GameController : MonoBehaviour
 
     public void Grab(DeliverableType type)
     {
+        onPickupEvent.Raise();
         active.Add(type);
         Vector2 areaPos = GetRandomPositionForArea();
         GameObject newArea = Instantiate(deliverableArea, areaPos, Quaternion.identity) as GameObject;
@@ -64,6 +71,7 @@ public class GameController : MonoBehaviour
 
     public void Deliver(DeliverableType type)
     {
+        onDropoffEvent.Raise();
         timer.AddTime(10f);
         delivered.Add(type);
         SpawnDeliverable();

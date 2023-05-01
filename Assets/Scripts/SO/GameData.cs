@@ -5,4 +5,5 @@ public class GameData : ScriptableObject
 {
     public VehicleController selectedVehicle;
     public bool muted = false;
+    public bool dialog = true;
 }
