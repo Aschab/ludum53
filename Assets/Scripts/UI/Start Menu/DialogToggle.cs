@@ -24,7 +24,7 @@ public class DialogToggle : MonoBehaviour
     private void UpdateSprite()
     {
         image.sprite = data.dialog
-            ? offSprite
-            : onSprite;
+            ? onSprite
+            : offSprite;
     }
 }
