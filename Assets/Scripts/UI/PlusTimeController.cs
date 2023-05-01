@@ -13,11 +13,14 @@ public class PlusTimeController : MonoBehaviour
     void Start()
     {
         textObj.text = text;
-        Vector3 originalScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        transform.localScale = Vector3.zero;
+        RectTransform rect = textObj.GetComponent<RectTransform>();
+        Vector3 originalScale = rect.localScale;
+        rect.localScale = Vector3.zero;
+
+        rect.anchoredPosition = new Vector3(100, 266, 0);
 
         DOTween.Sequence()
-            .Append(transform.DOScale(originalScale, 0.075f))
+            .Append(rect.DOScale(originalScale, 0.075f))
             .AppendInterval(1f)
             .Append(canvas.DOFade(0f, 0.5f))
             .AppendCallback(() => {

@@ -23,14 +23,12 @@ public class TimerController : MonoBehaviour
     private float raminingToDifficulty;
 
     private GameController gameController;
-    private Vector3 animationPoint;
 
     private GameObject plusTime;
 
     private void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
-        animationPoint = transform.Find("Animation Point").GetComponent<RectTransform>().position;
 
         plusTime = Resources.Load<GameObject>("Prefabs/UI/PlusTime");
 
@@ -98,11 +96,11 @@ public class TimerController : MonoBehaviour
     public void AddTime(float amount)
     {
         remaining += amount;
-        // GameObject obj = Instantiate(plusTime, Vector3.zero, Quaternion.identity);
-        // PlusTimeController indicatorController = obj.GetComponent<PlusTimeController>();
-        // indicatorController.text = $"+{amount}";
+        GameObject obj = Instantiate(plusTime, Vector3.zero, Quaternion.identity);
+        PlusTimeController indicatorController = obj.GetComponent<PlusTimeController>();
+        indicatorController.text = $"+{amount}";
 
-        // obj.transform.SetParent(null);
+        obj.transform.SetParent(null);
         UpdateText();
     }
 
