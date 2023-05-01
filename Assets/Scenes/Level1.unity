@@ -994,7 +994,7 @@ PrefabInstance:
       objectReference: {fileID: -9222017935019860292, guid: 411294ccd82924694b263604c8b171f2, type: 2}
     - target: {fileID: 6697555126318938696, guid: 09f2e978552611f4da09a2ebdebd5657, type: 3}
       propertyPath: duration
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6697555126318938696, guid: 09f2e978552611f4da09a2ebdebd5657, type: 3}
       propertyPath: onEndEvent
