@@ -245,6 +245,7 @@ MonoBehaviour:
   carAudio: {fileID: 0}
   smoothTransition: 3
   isBraking: 0
+  id: car
 --- !u!50 &6368804921228590201
 Rigidbody2D:
   serializedVersion: 4

@@ -15,14 +15,14 @@ public class VehicleSelectionOption : MonoBehaviour
     private Vector3 originalScale;
     private Vector3 targetScale;
 
-    private void Start()
+    private void Awake()
     {
         selectEvent = new UnityEvent();
 
         border = transform.Find("Selection Border").gameObject;
         originalScale = border.transform.localScale;
         targetScale = originalScale * 1.05f;
-
+        
         if (gameData.selectedVehicle.name == vehicle.name) ApplySelect();
     }
 
