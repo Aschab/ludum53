@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 18, y: 18}
-  radius: 10
+  radius: 12
   colliders: []
 --- !u!1 &8681156689228538285
 GameObject:

@@ -105,7 +105,7 @@ public class GameController : MonoBehaviour
 
     private void SpawnDeliverable()
     {
-        Vector2 deliverablePos = GetRandomPositionForSpawn();
+        Vector2 deliverablePos = GetRandomPositionForArea();
         GameObject newDeliverable = Instantiate(deliverable, deliverablePos, Quaternion.identity) as GameObject;
         GameObject pointing = GameObject.Find("PointTowards");
         if (pointing != null) {
