@@ -169,4 +169,9 @@ public class VehicleController : MonoBehaviour
         return isBraking || Mathf.Abs(GetLateralVelocity()) > driftThreshHold;
     }
 
+    public string GetDescription()
+    {
+        return vehicle.description;
+    }
+
 }
