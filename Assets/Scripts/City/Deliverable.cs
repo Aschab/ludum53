@@ -41,8 +41,8 @@ public class Deliverable : MonoBehaviour
                     audio.Play();
                 }
                 deliverableMovement.Kill();
+                gameController.Grab(DeliverableType.Pizza);
                 transform.DOScale(0f, .4f).SetEase(Ease.InOutQuint).OnComplete(() => {                    
-                    gameController.Grab(DeliverableType.Pizza);
                     transform.DOScale(0f, .5f).SetEase(Ease.InOutQuint).OnComplete(() => {
                         Destroy(gameObject);
                     });

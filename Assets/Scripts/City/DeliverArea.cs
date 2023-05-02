@@ -34,8 +34,8 @@ public class DeliverArea : MonoBehaviour
                     audio.Play();
                     ParticleSystem particles = GetComponentInChildren<ParticleSystem>();
                     particles.Stop();
+                    gameController.Deliver(type);
                     transform.DOScale(0f, 2f).SetEase(Ease.InOutQuint).OnComplete(() => {
-                        gameController.Deliver(type);
                         Destroy(gameObject);
                     });
                 }
